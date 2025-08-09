@@ -42,3 +42,4 @@ def test_resolve_alias():
     assert resolve_alias(N[int]) == dict[int, float]
     assert resolve_alias(R[int]) == list[list[int]]
     assert resolve_alias(U[int]) == list[list[list[int]]]
+

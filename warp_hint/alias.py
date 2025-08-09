@@ -1,10 +1,8 @@
 from collections import defaultdict
 from collections.abc import Callable, Iterable
-from typing import TypeAliasType, TypeVar, get_args, get_origin
-from types import GenericAlias
+from typing import TypeAliasType, TypeVar
 
-type Alias = TypeAliasType | GenericAlias | type | TypeVar
-type ResolvedAlias = type | GenericAlias
+from warp_hint.common import Alias, GenericAlias, ResolvedAlias, get_args, get_origin
 
 
 class AliasEffect:
@@ -40,6 +38,7 @@ class ResolveAlias:
             return self.resolve_alias(alias.__value__, None)
         elif isinstance(alias, GenericAlias):
             origin = get_origin(alias)
+            assert origin is not None
             args = get_args(alias)
             resolved_args = map(lambda x: self.resolve_alias(x, resolve_arg), args)
             if isinstance(origin, type):
