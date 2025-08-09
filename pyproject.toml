@@ -1,0 +1,22 @@
+[project]
+name = "warp_hint"
+version = "0.1.0"
+description = "Bring python's type system into nvidia warp-lang"
+authors = [{ name = "whitingyan", email = "1712428442@qq.com" }]
+requires-python = ">=3.12"
+readme = "README.md"
+license = { text = "MIT" }
+dependencies = ["warp-lang>=1.8.1"]
+
+
+[tool.pdm]
+distribution = true
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "-e file:///${PROJECT_ROOT}/../warp#egg=warp-lang",
+    "-e file:///${PROJECT_ROOT}/#egg=warp-hint",
+]
+
+[dependency-groups]
+dev = ["pytest>=8.4.1"]
