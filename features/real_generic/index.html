@@ -407,42 +407,42 @@
 
 <h1 id="real-generic">Real Generic</h1>
 <p>Python' generic is kind a fake generic that there is no specialization but generic alias.</p>
-<pre><code class="language-python">class A[T]:
-    @staticmethod
-    def static_info():
-        print(T)
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">static_info</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 
-    @classmethod
-    def cls_info(cls):
-        print(T)
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cls_info</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 
-    def info(self):
-        print(T)
+    <span class="k">def</span><span class="w"> </span><span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 
-A[int].static_info() # T
-A[int].cls_info() # T
-A[int]().info() # T
-print(issubclass(A[int],A)) # False
-print(isinstance(A[int](),A[int])) # False
-print(isinstance(A[int](),A)) # True
-</code></pre>
+<span class="n">A</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="o">.</span><span class="n">static_info</span><span class="p">()</span> <span class="c1"># T</span>
+<span class="n">A</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="o">.</span><span class="n">cls_info</span><span class="p">()</span> <span class="c1"># T</span>
+<span class="n">A</span><span class="p">[</span><span class="nb">int</span><span class="p">]()</span><span class="o">.</span><span class="n">info</span><span class="p">()</span> <span class="c1"># T</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">issubclass</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span><span class="n">A</span><span class="p">))</span> <span class="c1"># False</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="nb">int</span><span class="p">](),</span><span class="n">A</span><span class="p">[</span><span class="nb">int</span><span class="p">]))</span> <span class="c1"># False</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="nb">int</span><span class="p">](),</span><span class="n">A</span><span class="p">))</span> <span class="c1"># True</span>
+</code></pre></div>
 <p>In this example, you can't get the resolved value of the type var <code>T</code> in any kind of method of class. Type alias <code>A[int]</code> is not subclass of its origin <code>A</code>, and call type alias <code>A[int]</code> only got a instance of the origin type<code>A</code>.</p>
-<pre><code class="language-python">from warp_hint import RealGeneric
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">warp_hint</span><span class="w"> </span><span class="kn">import</span> <span class="n">RealGeneric</span>
 
-class A[T](RealGeneric):
-    @staticmethod
-    def cls_info(cls):
-        print(cls.type_attr(T))
+<span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="p">[</span><span class="n">T</span><span class="p">](</span><span class="n">RealGeneric</span><span class="p">):</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cls_info</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">type_attr</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
 
-    def info(self):
-        print(self.type_attr(T))
+    <span class="k">def</span><span class="w"> </span><span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">type_attr</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
 
-A[int].cls_info() # int
-A[int]().info() # int
-print(issubclass(A[int],A)) # True
-print(isinstance(A[int](),A[int])) # True
-print(isinstance(A[int](),A)) # True
-</code></pre>
+<span class="n">A</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="o">.</span><span class="n">cls_info</span><span class="p">()</span> <span class="c1"># int</span>
+<span class="n">A</span><span class="p">[</span><span class="nb">int</span><span class="p">]()</span><span class="o">.</span><span class="n">info</span><span class="p">()</span> <span class="c1"># int</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">issubclass</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span><span class="n">A</span><span class="p">))</span> <span class="c1"># True</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="nb">int</span><span class="p">](),</span><span class="n">A</span><span class="p">[</span><span class="nb">int</span><span class="p">]))</span> <span class="c1"># True</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="nb">int</span><span class="p">](),</span><span class="n">A</span><span class="p">))</span> <span class="c1"># True</span>
+</code></pre></div>
 <p><code>warp_hint</code> enable all of this, resolved type variable value can be retrieved via a class method <code>type_attr</code>, type alias <code>A[int]</code> become a real specification that subclass <code>A</code>.</p>
 
 
@@ -518,7 +518,7 @@ print(isinstance(A[int](),A)) # True
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.footer"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.footer", "navigation.expand"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
