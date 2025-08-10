@@ -344,6 +344,19 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Real Generic
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -355,6 +368,34 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#generic-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generic Cache
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -388,6 +429,23 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#generic-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generic Cache
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -406,12 +464,8 @@
 
 
 <h1 id="real-generic">Real Generic</h1>
-<p>Python' generic is kind a fake generic that there is no specialization but generic alias.</p>
+<p>Python' generic is kind a fake generic that there is no <code>specialization</code> but <code>generic alias</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">static_info</span><span class="p">():</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
-
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">cls_info</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
@@ -426,10 +480,10 @@
 <span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="nb">int</span><span class="p">](),</span><span class="n">A</span><span class="p">[</span><span class="nb">int</span><span class="p">]))</span> <span class="c1"># False</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="nb">int</span><span class="p">](),</span><span class="n">A</span><span class="p">))</span> <span class="c1"># True</span>
 </code></pre></div>
-<p>In this example, you can't get the resolved value of the type var <code>T</code> in any kind of method of class. Type alias <code>A[int]</code> is not subclass of its origin <code>A</code>, and call type alias <code>A[int]</code> only got a instance of the origin type<code>A</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">warp_hint</span><span class="w"> </span><span class="kn">import</span> <span class="n">RealGeneric</span>
+<p>In this example, you can't get the resolved value of the type var <code>T</code> in any kind of method of class. Type alias <code>A[int]</code> is not subclass of its origin <code>A</code>, and call type alias <code>A[int]</code> only got a instance of the origin type <code>A</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">warp_hint</span><span class="w"> </span><span class="kn">import</span> <span class="n">Generic</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="p">[</span><span class="n">T</span><span class="p">](</span><span class="n">RealGeneric</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="p">[</span><span class="n">T</span><span class="p">](</span><span class="n">Generic</span><span class="p">):</span>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">cls_info</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">type_attr</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
@@ -443,7 +497,22 @@
 <span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="nb">int</span><span class="p">](),</span><span class="n">A</span><span class="p">[</span><span class="nb">int</span><span class="p">]))</span> <span class="c1"># True</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="nb">int</span><span class="p">](),</span><span class="n">A</span><span class="p">))</span> <span class="c1"># True</span>
 </code></pre></div>
-<p><code>warp_hint</code> enable all of this, resolved type variable value can be retrieved via a class method <code>type_attr</code>, type alias <code>A[int]</code> become a real specification that subclass <code>A</code>.</p>
+<p><code>warp_hint</code> enable all of this, resolved type variable value can be retrieved via a class method <code>type_attr</code>, type alias <code>A[int]</code> become a real <code>specification</code> that subclass <code>A</code>.</p>
+<p><div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="p">:</span> <span class="o">...</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">B</span><span class="p">[</span><span class="n">t</span><span class="p">]:</span><span class="o">...</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">C</span><span class="p">[</span><span class="n">t</span><span class="p">](</span><span class="n">A</span><span class="p">[</span><span class="n">t</span><span class="p">]):</span><span class="o">...</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">D</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="nb">int</span><span class="p">]):</span><span class="o">...</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">E</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">](</span><span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">],</span><span class="n">C</span><span class="p">[</span><span class="n">v</span><span class="p">]):</span> <span class="o">...</span>
+</code></pre></div>
+You can build very arbitary generic classes structure.</p>
+<h2 id="generic-cache">Generic Cache</h2>
+<p>Python don't cache <code>generic alias</code> so:
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="ow">is</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="c1"># False</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">==</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="c1"># True </span>
+</code></pre></div>
+<code>warp_hint</code> make it <code>True</code> by cache it.
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="ow">is</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="c1"># True</span>
+</code></pre></div></p>
 
 
 
