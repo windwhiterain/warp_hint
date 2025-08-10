@@ -8,14 +8,15 @@ def func(a: A): ...
 
 ```
 
-In this example, `A` is a type alias if `int`, but use it to annote parameter `a` in kernel function `func` is invalid. However `warp_hint` let you do this:
+In this example, `A` is a type alias of `int`, but use it to annote parameter `a` in kernel function `func` is invalid. However `warp_hint` let you do this:
 
 ```python
+from warp_hint import kernel 
+
 type A = int
 
-@warp_hint.kernel
+@kernel
 def func(a: A): ...
-
 ```
 
 Although most of the time you can use the older version of alias in `warp`:
@@ -35,7 +36,7 @@ C[k,v] = dict[k,v]
 D[k] = C[k,int]
 E[k,v] = C[k,D[k]]
 
-@warp_hint.kernel
+@kernel
 def func(a: A[int], ... ,e: E[int,float]): ...
 ```
 

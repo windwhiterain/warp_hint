@@ -1,13 +1,9 @@
 # Real Generic
 
-Python' generic is kind a fake generic that there is no specialization but generic alias.
+Python' generic is kind a fake generic that there is no `specialization` but `generic alias`.
 
 ```python
 class A[T]:
-    @staticmethod
-    def static_info():
-        print(T)
-
     @classmethod
     def cls_info(cls):
         print(T)
@@ -23,12 +19,12 @@ print(isinstance(A[int](),A[int])) # False
 print(isinstance(A[int](),A)) # True
 ```
 
-In this example, you can't get the resolved value of the type var `T` in any kind of method of class. Type alias `A[int]` is not subclass of its origin `A`, and call type alias `A[int]` only got a instance of the origin type`A`.
+In this example, you can't get the resolved value of the type var `T` in any kind of method of class. Type alias `A[int]` is not subclass of its origin `A`, and call type alias `A[int]` only got a instance of the origin type `A`.
 
 ```python
-from warp_hint import RealGeneric
+from warp_hint import Generic
 
-class A[T](RealGeneric):
+class A[T](Generic):
     @staticmethod
     def cls_info(cls):
         print(cls.type_attr(T))
@@ -43,4 +39,24 @@ print(isinstance(A[int](),A[int])) # True
 print(isinstance(A[int](),A)) # True
 ```
 
-`warp_hint` enable all of this, resolved type variable value can be retrieved via a class method `type_attr`, type alias `A[int]` become a real specification that subclass `A`.
+`warp_hint` enable all of this, resolved type variable value can be retrieved via a class method `type_attr`, type alias `A[int]` become a real `specification` that subclass `A`.
+
+```python
+class A: ...
+class B[t]:...
+class C[t](A[t]):...
+class D(A[int]):...
+class E[k,v](B[k],C[v]): ...
+```
+You can build very arbitary generic classes structure.
+
+## Generic Cache
+Python don't cache `generic alias` so:
+```python
+print(list[int] is list[int]) # False
+print(list[int] == list[int]) # True 
+```
+`warp_hint` make it `True` by cache it.
+```python
+print(list[int] is list[int]) # True
+```
