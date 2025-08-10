@@ -13,7 +13,7 @@ class RealGeneric:
         return RealGenericAlias(cls, args)
 
     @classmethod
-    def type_arg(cls, type_var: TypeVar) -> ResolvedAlias:
+    def type_attr(cls, type_var: TypeVar) -> ResolvedAlias:
         return cls.param2arg[type_var]  # type: ignore
 
 

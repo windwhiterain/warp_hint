@@ -1,5 +1,5 @@
 # Warp Hint
 
-Bring python type system into nvidia warp-lang.
+Type enhanced [Nvidia Warp](https://github.com/NVIDIA/warp).
 
-## [Features](./docs/features/main.md)
+## [Documentation](./docs/index.md)

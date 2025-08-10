@@ -19,4 +19,7 @@ dev = [
 ]
 
 [dependency-groups]
-dev = ["pytest>=8.4.1"]
+dev = [
+    "pytest>=8.4.1",
+    "mkdocs>=1.6.1",
+]
