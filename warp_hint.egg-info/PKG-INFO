@@ -1,9 +1,15 @@
 Metadata-Version: 2.4
 Name: warp_hint
 Version: 0.1.0
-Summary: Default template for PDM package
+Summary: Bring python's type system into nvidia warp-lang
 Author-email: whitingyan <1712428442@qq.com>
 License: MIT
-Requires-Python: ==3.12.*
+Requires-Python: >=3.12
 Description-Content-Type: text/markdown
 Requires-Dist: warp-lang>=1.8.1
+
+# Warp Hint
+
+Type enhanced [Nvidia Warp](https://github.com/NVIDIA/warp).
+
+## [Documentation](https://windwhiterain.github.io/warp_hint/)

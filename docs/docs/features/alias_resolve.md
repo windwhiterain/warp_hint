@@ -1,5 +1,5 @@
 # Alias Resolve
-
+`warp` can't infer type alias in parameter annotations in kernel function.
 ```python
 type A = int
 
@@ -8,7 +8,7 @@ def func(a: A): ...
 
 ```
 
-`warp` can't infer the parameter type `A` in kernel function, `warp_hint` let you do this:
+In this example, `A` is a type alias if `int`, but use it to annote parameter `a` in kernel function `func` is invalid. However `warp_hint` let you do this:
 
 ```python
 type A = int
@@ -18,13 +18,13 @@ def func(a: A): ...
 
 ```
 
-Although most of the time you can use the older version of alias to make it pass in `warp`:
+Although most of the time you can use the older version of alias in `warp`:
 
 ```python
 A = int
 ```
 
-However, when it comes to generic alias:
+But when it comes to generic alias:
 
 ## Generic Alias Resolve
 
@@ -41,4 +41,4 @@ def func(a: A[int], ... ,e: E[int,float]): ...
 
 `warp_hint` will resolve all valid generic alias for you.
 
-Although `warp` does not support generic type in python's type system, you can't actually use `list[t]` nor `dict[k,v]` in kernel type annotations, but `warp_hint` provide that for you.
+`warp` does not support generic type in python's type system, so you can't actually use `list[t]` nor `dict[k,v]` in kernel type annotations. However, `warp_hint` let you use generic wrapper type.
