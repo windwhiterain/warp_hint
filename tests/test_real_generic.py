@@ -44,3 +44,5 @@ def test_type_attr():
     assert C().get_b() is int
 
     assert B[int] is B[int]
+
+test_type_attr()
