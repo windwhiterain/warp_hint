@@ -2,22 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://windwhiterain.github.io/warp_hint/</loc>
-         <lastmod>2025-08-10</lastmod>
+         <lastmod>2025-08-16</lastmod>
     </url>
     <url>
          <loc>https://windwhiterain.github.io/warp_hint/features/alias_resolve/</loc>
-         <lastmod>2025-08-10</lastmod>
+         <lastmod>2025-08-16</lastmod>
     </url>
     <url>
          <loc>https://windwhiterain.github.io/warp_hint/features/kernel_call/</loc>
-         <lastmod>2025-08-10</lastmod>
+         <lastmod>2025-08-16</lastmod>
     </url>
     <url>
          <loc>https://windwhiterain.github.io/warp_hint/features/output_marker/</loc>
-         <lastmod>2025-08-10</lastmod>
+         <lastmod>2025-08-16</lastmod>
     </url>
     <url>
          <loc>https://windwhiterain.github.io/warp_hint/features/real_generic/</loc>
-         <lastmod>2025-08-10</lastmod>
+         <lastmod>2025-08-16</lastmod>
+    </url>
+    <url>
+         <loc>https://windwhiterain.github.io/warp_hint/features/wrapper_type/</loc>
+         <lastmod>2025-08-16</lastmod>
     </url>
 </urlset>

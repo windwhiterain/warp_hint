@@ -225,46 +225,6 @@
       
   
   
-    
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    Features
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_1">
-            <span class="md-nav__icon md-icon"></span>
-            Features
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
   
   
     <li class="md-nav__item">
@@ -282,10 +242,9 @@
     </li>
   
 
-              
-            
-              
-                
+    
+      
+      
   
   
     
@@ -315,10 +274,9 @@
     </li>
   
 
-              
-            
-              
-                
+    
+      
+      
   
   
   
@@ -338,10 +296,9 @@
     </li>
   
 
-              
-            
-              
-                
+    
+      
+      
   
   
   
@@ -361,11 +318,25 @@
     </li>
   
 
-              
-            
-          </ul>
-        </nav>
+    
       
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wrapper_type/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Wrapper Type
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -414,13 +385,13 @@
 
 <span class="n">warp</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">inputs</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
 </code></pre></div>
-<p><code>warp_hint</code> enable you directly call the kernel function with <code>shape</code> added ahead of parameter annotations:</p>
+<p><code>warp_hint</code> enable you directly call the kernel function with <code>shape</code> provieded in a subsequent call:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">warp_hint</span><span class="w"> </span><span class="kn">import</span> <span class="n">kernel</span> 
 
 <span class="nd">@kernel</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span> <span class="o">...</span>
 
-<span class="n">func</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span> <span class="c1"># type-hint is avaliable</span>
+<span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)(</span><span class="n">shape</span><span class="p">)</span> <span class="c1"># type-hint is avaliable</span>
 </code></pre></div>
 
 
