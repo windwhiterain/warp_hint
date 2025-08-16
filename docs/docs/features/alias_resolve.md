@@ -42,4 +42,4 @@ def func(a: A[int], ... ,e: E[int,float]): ...
 
 `warp_hint` will resolve all valid generic alias for you.
 
-`warp` does not support generic type in python's type system, so you can't actually use `list[t]` nor `dict[k,v]` in kernel type annotations. However, `warp_hint` let you use generic wrapper type.
+`warp` does not support generic type in python's type system, so you can't actually use `list[t]` nor `dict[k,v]` in kernel type annotations. However, `warp_hint` let you use [generic wrapper type](./wrapper_type.md).

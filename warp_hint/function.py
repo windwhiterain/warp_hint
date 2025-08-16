@@ -3,26 +3,34 @@ import inspect
 from itertools import chain
 
 import warp
-from typing import (
-    ParamSpec,
-    Protocol,
-)
+from typing import Generic, ParamSpec
 
 from warp_hint.alias import Effect, resolve
-
-
-P = ParamSpec("P")
+from warp_hint.wrapper_type import GenericWrapperType, get_inner
 
 type Out[T] = T
 
 
-class KernelImpl:
+class Launchable:
+    def __init__(self, warp_kernel, inputs, outputs) -> None:
+        self.warp_kernel = warp_kernel
+        self.inputs = inputs
+        self.outputs = outputs
+
+    def __call__(self, shape) -> None:
+        warp.launch(self.warp_kernel, shape, self.inputs, self.outputs)  # type: ignore
+
+
+P = ParamSpec("P")
+
+
+class Kernel(Generic[P]):
     def __init__(self, kernel, is_outs: list[bool]) -> None:
         super().__init__()
-        self.kernel = kernel
+        self.warp_kernel = kernel
         self.is_outs = is_outs
 
-    def __call__(self, dim, *args) -> None:
+    def __call__(self, *args: P.args, **kwargs: P.kwargs) -> Launchable:
         inputs = []
         outputs = []
         for i, arg in enumerate(args):
@@ -30,11 +38,7 @@ class KernelImpl:
                 inputs.append(arg)
             else:
                 outputs.append(arg)
-        warp.launch(self.kernel, dim, inputs, outputs)  # type: ignore
-
-
-class Kernel(Protocol[P]):
-    def __call__(self, dim, *args: P.args, **kwargs: P.kwargs) -> None: ...
+        return Launchable(self.warp_kernel, inputs, outputs)
 
 
 def kernel(func: Callable[P, None]) -> Kernel[P]:
@@ -55,6 +59,8 @@ def kernel(func: Callable[P, None]) -> Kernel[P]:
             is_out = True
 
         annotation = resolve(annotation, [Effect(Out, out_effect)])
+        assert isinstance(annotation, type)
+        annotation = get_inner(annotation)
         is_outs.append(is_out)
         annotations = input_annotations if not is_out else output_annotations
         params = input_params if not is_out else output_params
@@ -69,4 +75,4 @@ def kernel(func: Callable[P, None]) -> Kernel[P]:
     setattr(func, "__signature__", inspect.Signature(input_params + output_params))
 
     kernel = warp.Kernel(func, code_transformers=[])  # type: ignore
-    return KernelImpl(kernel, is_outs)  # type: ignore
+    return Kernel(kernel, is_outs)  # type: ignore

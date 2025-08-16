@@ -6,9 +6,16 @@ Author-email: whitingyan <1712428442@qq.com>
 License: MIT
 Requires-Python: >=3.12
 Description-Content-Type: text/markdown
+License-File: LICENSE
 Requires-Dist: warp-lang>=1.8.1
+Requires-Dist: numpy>=2.3.2
+Dynamic: license-file
 
 # Warp Hint
+[![GitHub](https://img.shields.io/badge/GitHub-warp__hint-blue?logo=github)](https://github.com/windwhiterain/warp_hint)
+[![License](https://img.shields.io/github/license/windwhiterain/warp_hint)](https://github.com/windwhiterain/warp_hint/blob/master/LICENSE)
+![GitHub release](https://img.shields.io/github/v/release/windwhiterain/warp_hint)
+
 
 Type enhanced [Nvidia Warp](https://github.com/NVIDIA/warp).
 

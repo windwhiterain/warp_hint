@@ -1,12 +1,12 @@
 [project]
 name = "warp_hint"
 version = "0.1.0"
-description = "Bring python's type system into nvidia warp-lang"
+description = "Type enhanced Nvidia Warp"
 authors = [{ name = "whitingyan", email = "1712428442@qq.com" }]
 requires-python = ">=3.12"
 readme = "README.md"
 license = { text = "MIT" }
-dependencies = ["warp-lang>=1.8.1"]
+dependencies = ["warp-lang>=1.8.1", "numpy>=2.3.2"]
 
 
 [tool.pdm]

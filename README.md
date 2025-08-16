@@ -7,3 +7,6 @@
 Type enhanced [Nvidia Warp](https://github.com/NVIDIA/warp).
 
 ## [Documentation](https://windwhiterain.github.io/warp_hint/)
+
+## Developer Guide
+This project is managed by [PDM](https://github.com/pdm-project/pdm).

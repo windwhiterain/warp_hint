@@ -1,11 +1,11 @@
 site_name: Warp Hint
 site_url: https://windwhiterain.github.io/warp_hint
 nav:
-  - Features:
-      - Alias Resolve: features/alias_resolve.md
-      - Kernel Call: features/kernel_call.md
-      - Output Marker: features/output_marker.md
-      - Real Generic: features/real_generic.md
+  - Alias Resolve: features/alias_resolve.md
+  - Kernel Call: features/kernel_call.md
+  - Output Marker: features/output_marker.md
+  - Real Generic: features/real_generic.md
+  - Wrapper Type: features/wrapper_type.md
 theme:
   name: material
   palette:
